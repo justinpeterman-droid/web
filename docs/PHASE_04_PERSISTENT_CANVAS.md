@@ -23,15 +23,21 @@ reads and reacts to. The theater stays built; only the scene changes. Every late
 - None new — this is structural. Just understand the pattern before prompting.
 
 ## The pattern (so you can verify Cursor builds it correctly)
-1. A single `<Canvas>` is rendered once in the root layout, fixed-position,
-   covering the viewport, sitting behind or above the page DOM as the design
-   needs.
-2. A shared state store (React context or a small store like Zustand) holds "what
-   the canvas should currently show."
-3. Each page, on mount, sets that state (e.g. `setScene('home-hero')`).
-4. Inside the canvas, a controller component reads the state and swaps which 3D
-   scene is active, ideally with a smooth transition rather than a hard cut.
-5. Heavy 3D is lazy-loaded and suspended so the page shell appears instantly.
+1. A single `<Canvas>` is rendered once in the root layout via a **Client
+   Component wrapper** (`"use client"`). Load it with `next/dynamic(..., { ssr:
+   false })` — WebGL must never run on the server.
+2. The canvas is fixed-position, covering the viewport, typically **behind** page
+   DOM (`z-index` lower). Use `pointer-events: none` on the canvas unless a scene
+   needs direct 3D clicks.
+3. A shared state store (React context or **Zustand** — install in this phase if
+   chosen) holds "what the canvas should currently show."
+4. Each route sets scene state via a `usePageScene(sceneId)` hook. Because App
+   Router pages are Server Components by default, use a small client child (e.g.
+   `<PageSceneSetter sceneId="home" />`) on server pages instead of calling the
+   hook in the page file directly.
+5. Inside the canvas, a `SceneController` reads state and swaps the active scene,
+   with a smooth transition rather than a hard cut.
+6. Heavy 3D is lazy-loaded and suspended so the page shell appears instantly.
 
 ## Prompts for Cursor
 
@@ -47,7 +53,8 @@ transitions work, and how lazy-loading/Suspense fits. Wait for my approval.
 **Prompt 2 — build it:**
 ```
 Implement the approved persistent-canvas architecture:
-- One <Canvas> mounted once in the root layout, fixed to the viewport.
+- One <Canvas> mounted once in the root layout via a Client Component wrapper,
+  loaded with next/dynamic (ssr: false), fixed to the viewport.
 - A shared store holding the active scene id + any camera/state the scene needs.
 - A SceneController inside the canvas that renders the active scene and
   transitions smoothly when the active scene id changes.

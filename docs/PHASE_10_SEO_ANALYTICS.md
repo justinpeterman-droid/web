@@ -11,7 +11,11 @@ working. For a marketing-plus-portfolio site, this is the difference between a
 showpiece and a tool that brings you opportunities.
 
 ## Prerequisites
-- Phase 7 (so metadata can be content-driven) and ideally Phase 9.
+- Phase 7 (so metadata can be content-driven) and Phase 9 (performance baseline).
+
+**Plan note:** Dynamic OG image routes and analytics scripts can add bundle weight.
+After this phase, re-run Lighthouse on every route and fix any regression below
+the Phase 9 targets (mobile performance > 85, accessibility = 100).
 
 ## Decisions / inputs you provide
 - Site name, tagline, and a default description.
@@ -71,7 +75,9 @@ doesn't block rendering. Tell me where I'll view the data after deploy.
 - `sitemap.xml` includes all routes + project slugs; `robots.txt` exists.
 - Structured data is present and validates.
 - Analytics is installed and won't be visible-until-deploy (that's expected).
-- None of this measurably hurt the Phase 9 performance scores.
+- Lighthouse re-run confirms mobile performance still > 85 and a11y still = 100
+  (re-do Phase 9 fixes if scores dropped).
+- Privacy policy linked if analytics or forms require it for your jurisdiction.
 
 ## Common pitfalls
 - **Same title/description on every page:** search engines and humans both hate

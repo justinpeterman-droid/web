@@ -20,8 +20,9 @@ to latest stable versions and confirming compatibility** — it prevents the
 1. Create the Next.js app.
 2. Add the Cursor rules file.
 3. Install and pin the libraries.
-4. Confirm it runs.
-5. Commit to Git.
+4. Add `.env.example` (empty placeholders for Sanity, Resend, site URL — filled in later phases).
+5. Confirm it runs (`pnpm dev` and `pnpm build`).
+6. Commit to Git.
 
 ## Prompts for Cursor
 
@@ -61,13 +62,25 @@ Start the dev server and tell me the local URL. Then create a minimal test:
 render a single spinning cube using React Three Fiber on the home page, just to
 prove the 3D pipeline works end to end. Keep it crude — we will replace it. Note:
 this temporary canvas will be REMOVED in Phase 4 when we build the persistent
-canvas.
+canvas. The cube must live in a Client Component ("use client") because R3F
+requires the browser. Also create a .env.example listing env vars we will need
+later (Sanity project ID/dataset, Resend API key, public site URL) with empty
+values — no secrets.
+```
+
+**Prompt 5 — production build gate:**
+```
+Run pnpm build and fix any errors. A scaffold that only works in dev will waste
+time in Phase 11.
 ```
 
 ## Definition of done
 - `pnpm dev` starts the app and you can open it in the browser.
+- `pnpm build` completes without errors.
 - A spinning cube renders on the home page (proof the 3D toolchain works).
+- Cube is in a Client Component with basic lighting.
 - `.cursor/rules` exists with the full rules block.
+- `.env.example` exists (no real secrets).
 - Cursor has listed the exact installed versions of every library.
 
 ## Common pitfalls

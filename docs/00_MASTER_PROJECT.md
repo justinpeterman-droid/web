@@ -151,6 +151,65 @@ well-commented code. You explain trade-offs before making non-obvious choices.
 | 11 | `PHASE_11_DEPLOYMENT.md` | Live on Vercel with custom domain + env vars |
 | 12 | `PHASE_12_HANDOFF.md` | How to update, change safely, and maintain |
 
+**Detailed checklist:** [`CHECKLIST.md`](CHECKLIST.md) — every gate, verify step, and acceptance item in one place.
+
+---
+
+## Plan logic (read before building)
+
+### Critical path
+
+```
+Phase 0 → 1 → 2 → 3 → 4 (keystone) → 5 → 6 → 7 → 8 → 9 → 10 → 11 → 12
+                              ↑
+                    Nothing 3D-heavy before Phase 4
+```
+
+Phases **4** and **5** are the architectural hinge. Phases **9** and **10** both touch performance — re-run Lighthouse after Phase 10.
+
+### Phase dependencies (what each phase actually needs)
+
+| Phase | Hard prerequisites | Soft notes |
+|---|---|---|
+| 4 | Phase 3 layout with canvas mount point | Requires client/server split (see below) |
+| 5 | Phase 4 persistent canvas proven | Hero replaces Phase 1 smoke-test cube |
+| 6 | Phase 5 hero + scene pattern | Scroll sequences may need **retuning after Phase 7** when real CMS content changes section heights |
+| 7 | Phase 2 content types | Can run in parallel with Phase 8 after Phase 3, but plan order keeps content before polish |
+| 8 | Phase 3 contact route + Phase 1 form libs | Independent of CMS |
+| 9 | Phases 4–8 functionally complete | Optimization before final SEO pass |
+| 10 | Phase 7 for dynamic project metadata | Re-verify Phase 9 performance scores after adding OG/analytics |
+| 11 | All prior phases locally green | Production build (`pnpm build`) is a gate |
+| 12 | Phase 11 live | Documentation only |
+
+### App Router + persistent canvas (non-negotiable pattern)
+
+Next.js App Router layouts are **Server Components** by default. R3F `<Canvas>` is **client-only**. The plan therefore requires:
+
+1. A thin **client wrapper** (e.g. `SceneCanvas.tsx` with `"use client"`) mounted once from the root layout.
+2. Load the canvas with `next/dynamic(..., { ssr: false })` so WebGL never runs on the server.
+3. Pages that call `usePageScene()` must be Client Components **or** use a small client child (e.g. `PageSceneSetter`) — server pages cannot call hooks directly.
+4. Default stacking: canvas **behind** DOM content (`z-index` lower); use `pointer-events: none` on the canvas unless specific 3D hit areas need clicks.
+
+### Metadata is layered (not duplicated work)
+
+| When | Scope |
+|---|---|
+| Phase 3 | Baseline `title` + `description` per route |
+| Phase 7 | Project pages pull title/description from CMS |
+| Phase 10 | Full system: OG/Twitter, canonical URLs, sitemap, robots, JSON-LD, dynamic OG images |
+
+### Intentional phase-order tradeoffs
+
+- **Animation (6) before CMS (7):** Build scroll motion on stable placeholder layout first; expect a short **revisit of ScrollTrigger** after CMS content lands (refresh triggers, adjust pin heights).
+- **Optimization (9) before SEO (10):** Tune performance on near-final UI; SEO additions (dynamic OG routes, analytics) can add weight — **re-run Lighthouse** at end of Phase 10.
+
+### Security & ops gaps addressed in phase updates
+
+- `.env.example` from Phase 1; real secrets only in `.env.local` / Vercel.
+- Sanity Studio at `/studio`: protect in production (middleware) or use Sanity-hosted studio.
+- Contact form: server-side re-validation always; Resend key never in client bundle.
+- `ScrollTrigger.kill()` on route change — orphaned triggers are a common Phase 6 bug.
+
 ---
 
 ## How to use the phase files

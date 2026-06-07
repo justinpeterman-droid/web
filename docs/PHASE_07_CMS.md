@@ -31,7 +31,9 @@ Sanity using GROQ (Sanity's query language) and renders the pages. The
 ```
 Integrate Sanity into this Next.js project. Install the current stable Sanity
 packages and set up an embedded Sanity Studio (so I can edit content at a /studio
-route). Create Sanity schemas that MIRROR our src/types/content.ts: a "project"
+route). In production, protect /studio with middleware (or document using
+Sanity-hosted studio instead of a public embedded route). Create Sanity schemas
+that MIRROR our src/types/content.ts: a "project"
 document with fields [list fields] and a "siteSettings" singleton with [site
 title, nav labels, social links, contact email]. Use proper Sanity field types
 (slug, image with alt text, rich text/portable text for descriptions, etc.).

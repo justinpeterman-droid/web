@@ -27,9 +27,10 @@ npm --version
 
 ### 2. Install pnpm (the package manager we chose)
 ```bash
-npm install -g pnpm
+corepack enable
 pnpm --version
 ```
+(Or `npm install -g pnpm` if Corepack is unavailable.)
 
 ### 3. Install Git and set your identity
 Install Git from git-scm.com if you don't have it, then:

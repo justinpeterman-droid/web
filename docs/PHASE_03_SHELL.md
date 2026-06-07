@@ -21,7 +21,8 @@ to walk through.
 1. Build the root layout (header + main + footer landmarks).
 2. Build the navigation, accessible and responsive.
 3. Create all five routes with placeholder content.
-4. Confirm keyboard navigation works across the whole site.
+4. Add App Router hygiene: `not-found.tsx`, `error.tsx`, and `loading.tsx` where useful.
+5. Confirm keyboard navigation works across the whole site.
 
 ## Prompts for Cursor
 
@@ -53,11 +54,19 @@ Create these routes with placeholder content that reflects real structure:
   description area (use static placeholder data for now; CMS comes in Phase 7)
 - /about: heading, bio placeholder, optional timeline placeholder
 - /contact: heading + a placeholder form (real form comes in Phase 8)
-Each route must export proper page metadata (title, description) per our SEO
-rule. Use semantic headings (one h1 per page).
+Each route must export baseline page metadata (title + description only — full
+OG/sitemap/structured data comes in Phase 10). Use semantic headings (one h1 per
+page).
 ```
 
-**Prompt 4 — keyboard pass:**
+**Prompt 4 — error and loading states:**
+```
+Add a custom not-found.tsx and error.tsx at the app level. Add loading.tsx for
+/work and /work/[slug] so navigation feels intentional while placeholders (later
+CMS data) load.
+```
+
+**Prompt 5 — keyboard pass:**
 ```
 Walk through the site using only the keyboard (Tab, Shift+Tab, Enter, Escape).
 Fix anything that can't be reached or operated, and ensure focus order is logical
@@ -68,7 +77,8 @@ on every route. Report what you changed.
 - All five routes exist and are reachable from the nav.
 - You can navigate the entire site with the keyboard alone, with visible focus.
 - Mobile menu opens/closes correctly and traps focus.
-- Each page has one `h1` and proper metadata.
+- Each page has one `h1` and baseline metadata (title + description).
+- `not-found.tsx` and `error.tsx` exist.
 - A clearly commented placeholder marks where the persistent canvas will mount.
 
 ## Common pitfalls

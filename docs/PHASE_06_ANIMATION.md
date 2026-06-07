@@ -14,6 +14,11 @@ harm.
 ## Prerequisites
 - Phase 5 complete (hero scene + scene pattern).
 
+**Plan note:** This phase runs before the CMS (Phase 7). ScrollTrigger pin
+positions are based on placeholder content heights. After Phase 7, revisit this
+phase briefly to `ScrollTrigger.refresh()` and adjust any pins that drift when
+real project copy and images load.
+
 ## Decisions / inputs you provide
 1. **Scroll story for the home page** — what should happen as the visitor scrolls?
    (e.g. hero object morphs/rotates, sections fade and rise, the 3D camera drifts.)
@@ -48,6 +53,11 @@ the shared canvas state (not by touching a separate canvas). Use scrubbed
 timelines tied to scroll, pin sections where appropriate, and ensure everything
 is fully disabled/simplified under reduced motion. Keep it performant: avoid
 animating layout-thrashing properties; prefer transforms and opacity.
+
+Critical: on route change, kill all ScrollTrigger instances created for the
+leaving page (ScrollTrigger.getAll().forEach(t => t.kill()) or scoped cleanup in
+useEffect). Orphaned triggers cause jank and wrong scroll positions after
+navigation.
 ```
 
 **Prompt 3 — page transitions:**
