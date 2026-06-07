@@ -2,7 +2,9 @@
 
 import { Canvas } from "@react-three/fiber";
 import dynamic from "next/dynamic";
+import { CanvasIdleBridge } from "@/components/canvas/CanvasIdleBridge";
 import { SceneRenderer } from "@/components/canvas/SceneRenderer";
+import { useCanvasIdleThrottle } from "@/hooks/useCanvasIdleThrottle";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 /**
@@ -11,6 +13,10 @@ import { useReducedMotion } from "@/hooks/useReducedMotion";
  */
 export function PersistentCanvas() {
   const reducedMotion = useReducedMotion();
+  const { isRendering } = useCanvasIdleThrottle(3_000);
+
+  const frameloop =
+    reducedMotion || !isRendering ? "demand" : "always";
 
   return (
     <div
@@ -25,9 +31,10 @@ export function PersistentCanvas() {
           alpha: true,
           powerPreference: "high-performance",
         }}
-        frameloop={reducedMotion ? "demand" : "always"}
+        frameloop={frameloop}
       >
-        <SceneRenderer />
+        <CanvasIdleBridge isRendering={isRendering && !reducedMotion} />
+        <SceneRenderer isCanvasActive={isRendering && !reducedMotion} />
       </Canvas>
     </div>
   );
