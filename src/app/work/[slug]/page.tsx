@@ -1,81 +1,63 @@
-import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getProject, projects } from "@/lib/projects";
+import { PageIntro } from "@/components/layout/PageIntro";
+import { getProjectBySlug, getProjects } from "@/lib/content/projects";
+import { createPageMetadata } from "@/lib/metadata";
 
-// Pre-render a page per project at build time.
-export function generateStaticParams() {
-  return projects.map((p) => ({ slug: p.slug }));
+type WorkDetailPageProps = {
+  params: Promise<{ slug: string }>;
+};
+
+export async function generateStaticParams() {
+  const projects = await getProjects();
+  return projects.map((project) => ({ slug: project.slug }));
 }
 
-// Per-project SEO metadata.
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: WorkDetailPageProps) {
   const { slug } = await params;
-  const project = getProject(slug);
-  if (!project) return { title: "Project not found" };
-  return { title: project.title, description: project.summary };
+  const project = await getProjectBySlug(slug);
+
+  if (!project) {
+    return createPageMetadata({ title: "Project not found", path: `/work/${slug}` });
+  }
+
+  return createPageMetadata({
+    title: project.title,
+    description: project.tagline,
+    path: `/work/${project.slug}`,
+  });
 }
 
-export default async function ProjectDetailPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+export default async function WorkDetailPage({ params }: WorkDetailPageProps) {
   const { slug } = await params;
-  const project = getProject(slug);
+  const project = await getProjectBySlug(slug);
+
   if (!project) notFound();
 
   return (
-    <article className="mx-auto max-w-3xl px-6 py-16">
-      <h1 className="font-display text-4xl font-bold tracking-tight">
-        {project.title}
-      </h1>
-
-      {/* Meta row */}
-      <dl className="text-muted mt-4 flex flex-wrap gap-x-8 gap-y-2 text-sm">
-        <div>
-          <dt className="text-subtle">Role</dt>
-          <dd>{project.role}</dd>
-        </div>
-        <div>
-          <dt className="text-subtle">Year</dt>
-          <dd>{project.year}</dd>
-        </div>
-        <div>
-          <dt className="text-subtle">Tools</dt>
-          <dd>{project.tech.join(", ")}</dd>
-        </div>
-      </dl>
-
-      {/* Image area (placeholder until CMS) */}
-      <div
-        className="bg-surface border-border mt-8 aspect-video rounded-lg border"
-        role="img"
-        aria-label={project.heroImage.alt}
+    <main id="main-content" className="container-shell py-16 md:py-20">
+      <PageIntro
+        eyebrow={`${project.year} · Case study`}
+        title={project.title}
+        description={project.tagline}
       />
 
-      {/* Description area */}
-      <div className="mt-8 flex flex-col gap-4">
-        {project.description.map((para, i) => (
-          <p key={i} className="text-muted text-lg leading-relaxed">
-            {para}
-          </p>
-        ))}
-      </div>
-
-      {project.externalUrl && (
-        <a
-          href={project.externalUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-accent mt-8 inline-block text-sm font-medium"
-        >
-          Visit project →
-        </a>
-      )}
-    </article>
+      <article className="glass-panel max-w-3xl space-y-6 p-6 md:p-8">
+        <p className="hero-copy">{project.description}</p>
+        <ul className="flex flex-wrap gap-2 text-xs uppercase tracking-[0.14em] text-[var(--color-muted)]">
+          {project.services.map((service) => (
+            <li
+              key={service}
+              className="rounded-full border border-white/10 px-2.5 py-1"
+            >
+              {service}
+            </li>
+          ))}
+        </ul>
+        <Link href="/work" className="nav-link">
+          Back to all work
+        </Link>
+      </article>
+    </main>
   );
 }

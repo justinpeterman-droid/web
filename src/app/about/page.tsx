@@ -1,39 +1,38 @@
-import type { Metadata } from "next";
+import { PageIntro } from "@/components/layout/PageIntro";
+import { getSiteSettings } from "@/lib/content/site";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "About",
-  description: "About the studio — approach, background, and timeline.",
-};
+  description: "Studio story, craft, and the architecture behind the experience.",
+  path: "/about",
+});
 
-const timeline = [
-  { year: "2025", text: "Placeholder milestone." },
-  { year: "2024", text: "Placeholder milestone." },
-  { year: "2023", text: "Placeholder milestone." },
-];
+export default async function AboutPage() {
+  const settings = await getSiteSettings();
 
-export default function AboutPage() {
   return (
-    <div className="mx-auto max-w-3xl px-6 py-16">
-      <h1 className="font-display text-4xl font-bold tracking-tight">About</h1>
+    <main id="main-content" className="container-shell py-16 md:py-20">
+      <PageIntro eyebrow="Studio" title="About" description={settings.aboutIntro} />
 
-      <p className="text-muted mt-6 text-lg leading-relaxed">
-        Placeholder bio. We&apos;re a studio focused on immersive, performant web
-        experiences — where 3D and motion serve the story rather than getting in
-        its way.
-      </p>
-      <p className="text-muted mt-4 text-lg leading-relaxed">
-        Second placeholder paragraph with more background detail to come.
-      </p>
-
-      <h2 className="font-display mt-12 text-2xl font-bold">Timeline</h2>
-      <ol className="border-border mt-6 border-l">
-        {timeline.map((item) => (
-          <li key={item.year} className="border-border ml-0 border-b py-4 pl-6">
-            <span className="text-accent font-mono text-sm">{item.year}</span>
-            <p className="text-muted mt-1">{item.text}</p>
-          </li>
-        ))}
-      </ol>
-    </div>
+      <div className="grid gap-5 md:grid-cols-2">
+        <section className="glass-panel p-6">
+          <h2 className="mb-3 text-xl font-medium text-white">Persistent canvas</h2>
+          <p className="hero-copy">
+            One WebGL stage lives above the entire site. Routes change the scene,
+            not the renderer — avoiding white flashes, context churn, and memory
+            leaks between pages.
+          </p>
+        </section>
+        <section className="glass-panel p-6">
+          <h2 className="mb-3 text-xl font-medium text-white">Performance first</h2>
+          <p className="hero-copy">
+            Motion respects reduced-motion preferences, images use optimized
+            delivery, and each route ships only the content it needs for SEO and
+            speed.
+          </p>
+        </section>
+      </div>
+    </main>
   );
 }

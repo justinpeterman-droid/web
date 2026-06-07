@@ -1,37 +1,30 @@
-import Link from "next/link";
-import type { Metadata } from "next";
-import { projects } from "@/lib/projects";
+import { PageIntro } from "@/components/layout/PageIntro";
+import { ProjectCard } from "@/components/ui/ProjectCard";
+import { getProjects } from "@/lib/content/projects";
+import { createPageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Work",
-  description: "A selection of immersive projects and case studies.",
-};
+  description: "Case studies and selected projects from the studio.",
+  path: "/work",
+});
 
-export default function WorkPage() {
+export default async function WorkPage() {
+  const projects = await getProjects();
+
   return (
-    <div className="mx-auto max-w-6xl px-6 py-16">
-      <h1 className="font-display text-4xl font-bold tracking-tight">Work</h1>
-      <p className="text-muted mt-3 max-w-xl text-lg">
-        Selected projects. Content is placeholder until the CMS lands (Phase 7).
-      </p>
+    <main id="main-content" className="container-shell py-16 md:py-20">
+      <PageIntro
+        eyebrow="Portfolio"
+        title="Work"
+        description="Each route loads only what it needs while the persistent canvas keeps the world continuous."
+      />
 
-      <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {projects.map((p) => (
-          <li key={p.slug}>
-            <Link
-              href={`/work/${p.slug}`}
-              className="border-border bg-surface hover:bg-surface-raised block h-full rounded-lg border p-6 transition-colors"
-            >
-              <div className="bg-surface-raised mb-4 aspect-video rounded" />
-              <h2 className="font-display text-xl font-semibold">{p.title}</h2>
-              <p className="text-subtle mt-1 text-sm">
-                {p.role} · {p.year}
-              </p>
-              <p className="text-muted mt-2 text-sm">{p.summary}</p>
-            </Link>
-          </li>
+      <div className="grid gap-5">
+        {projects.map((project) => (
+          <ProjectCard key={project._id} project={project} />
         ))}
-      </ul>
-    </div>
+      </div>
+    </main>
   );
 }

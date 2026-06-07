@@ -1,18 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Space_Grotesk } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
+import { PersistentCanvasLazy } from "@/components/canvas/PersistentCanvas";
+import { SiteFooter } from "@/components/layout/SiteFooter";
+import { SiteHeader } from "@/components/layout/SiteHeader";
+import { SkipLink } from "@/components/layout/SkipLink";
+import { AppProviders } from "@/components/providers/AppProviders";
+import { RouteSceneSync } from "@/components/providers/RouteSceneSync";
+import { createPageMetadata } from "@/lib/metadata";
 import "./globals.css";
-import { SiteHeader } from "@/components/site-header";
-import { SiteFooter } from "@/components/site-footer";
 
-// Body font — readable, neutral. Loaded via next/font for zero layout shift.
 const geistSans = Geist({
   variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-// Display font — geometric grotesk for a precise, cinematic heading voice.
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
   subsets: ["latin"],
 });
 
@@ -21,16 +19,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// SEO baseline (Phase 2 a11y/SEO rule). metadataBase lets relative OG URLs resolve.
-export const metadata: Metadata = {
-  metadataBase: new URL("https://example.com"),
-  title: {
-    default: "Studio — Immersive Portfolio",
-    template: "%s · Studio",
-  },
-  description:
-    "An immersive portfolio built around a single persistent 3D canvas — precise, cinematic, warm.",
-};
+export const metadata: Metadata = createPageMetadata({});
 
 export default function RootLayout({
   children,
@@ -40,23 +29,17 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${spaceGrotesk.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="bg-background text-foreground min-h-full flex flex-col">
-        {/*
-          PERSISTENT CANVAS MOUNT POINT (Phase 4).
-          The single <Canvas> will mount HERE — fixed to the viewport, stacked
-          ABOVE the page content in DOM order so it can sit behind or in front
-          via z-index/pointer-events. Do NOT mount any per-page canvas; that
-          defeats the whole persistent-canvas architecture. Left intentionally
-          empty until Phase 4.
-        */}
-
-        <SiteHeader />
-        <main id="main-content" className="flex-1">
-          {children}
-        </main>
-        <SiteFooter />
+      <body className="flex min-h-full flex-col">
+        <AppProviders>
+          <SkipLink />
+          <PersistentCanvasLazy />
+          <RouteSceneSync />
+          <SiteHeader />
+          <div className="page-shell">{children}</div>
+          <SiteFooter />
+        </AppProviders>
       </body>
     </html>
   );
