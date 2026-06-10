@@ -33,7 +33,7 @@ export async function POST(request: Request) {
     from: contactFrom,
     to: contactTo,
     replyTo: email,
-    subject: `New portfolio inquiry from ${name}`,
+    subject: `Hometown Serenity inquiry from ${name}`,
     text: `From: ${name} <${email}>\n\n${message}`,
   });
 

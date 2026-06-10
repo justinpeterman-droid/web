@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
@@ -12,17 +13,24 @@ export function SiteHeader() {
     <header className="site-header">
       <div className="container-shell flex items-center justify-between gap-6 py-5">
         <Link href="/" className="brand-link">
-          <span className="brand-mark" aria-hidden="true" />
+          <Image
+            src="/images/brand/hometown-serenity-logo-mark.png"
+            alt=""
+            width={36}
+            height={36}
+            className="brand-logo"
+          />
           <span>{SITE_NAME}</span>
         </Link>
 
         <nav aria-label="Primary">
           <ul className="flex flex-wrap items-center gap-1 sm:gap-2">
             {NAV_LINKS.map((link) => {
+              const hrefPath = link.href.split("#")[0] || "/";
               const active =
-                link.href === "/"
+                hrefPath === "/"
                   ? pathname === "/"
-                  : pathname.startsWith(link.href);
+                  : pathname === hrefPath || pathname.startsWith(`${hrefPath}/`);
 
               return (
                 <li key={link.href}>

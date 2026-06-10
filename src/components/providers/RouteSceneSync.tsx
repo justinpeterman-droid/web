@@ -7,11 +7,6 @@ import { ROUTE_SCENE_MAP } from "@/lib/constants";
 import type { SceneId } from "@/types/canvas";
 
 function sceneFromPath(pathname: string): { id: SceneId; slug?: string } {
-  if (pathname.startsWith("/work/") && pathname !== "/work") {
-    const slug = pathname.split("/").pop();
-    return { id: "work-detail", slug };
-  }
-
   return { id: ROUTE_SCENE_MAP[pathname] ?? "default" };
 }
 

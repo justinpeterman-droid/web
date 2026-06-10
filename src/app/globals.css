@@ -1,18 +1,25 @@
 @import "tailwindcss";
 
 :root {
-  --background: #05070f;
-  --foreground: #f8fafc;
-  --muted: #94a3b8;
-  --accent: #818cf8;
-  --accent-strong: #c4b5fd;
-  --surface: rgba(15, 23, 42, 0.72);
-  --surface-border: rgba(148, 163, 184, 0.18);
-  --canvas-fallback: #05070f;
-  --focus-ring: #c4b5fd;
+  /* Sage & Obsidian Alchemy (V2) */
+  --obsidian: #181c1f;
+  --sage: #8ba892;
+  --ethereal-teal: #5b7b7f;
+  --alchemy-gold: #d4c193;
+  --parchment: #f7f7f2;
+
+  --background: var(--obsidian);
+  --foreground: var(--parchment);
+  --muted: #a8b0b4;
+  --accent: var(--sage);
+  --accent-strong: var(--alchemy-gold);
+  --surface: rgba(24, 28, 31, 0.72);
+  --surface-border: rgba(139, 168, 146, 0.22);
+  --canvas-fallback: var(--obsidian);
+  --focus-ring: var(--alchemy-gold);
   --radius-lg: 1.25rem;
   --radius-md: 0.875rem;
-  --shadow-soft: 0 24px 80px rgba(2, 6, 23, 0.45);
+  --shadow-soft: 0 24px 80px rgba(0, 0, 0, 0.45);
 }
 
 @theme inline {
@@ -24,8 +31,13 @@
   --color-surface: var(--surface);
   --color-surface-border: var(--surface-border);
   --color-canvas-fallback: var(--canvas-fallback);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-obsidian: var(--obsidian);
+  --color-sage: var(--sage);
+  --color-teal: var(--ethereal-teal);
+  --color-gold: var(--alchemy-gold);
+  --color-parchment: var(--parchment);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-outfit);
 }
 
 * {
@@ -52,9 +64,16 @@ html {
 
 body {
   min-height: 100dvh;
-  background: radial-gradient(circle at top, #111827 0%, var(--background) 48%);
+  background: var(--obsidian);
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+h1,
+h2,
+h3,
+.page-title {
+  font-family: var(--font-display), var(--font-sans), system-ui, sans-serif;
 }
 
 a {
@@ -103,12 +122,11 @@ a {
   text-decoration: none;
 }
 
-.brand-mark {
-  width: 0.85rem;
-  height: 0.85rem;
+.brand-logo {
+  width: 2.25rem;
+  height: 2.25rem;
   border-radius: 999px;
-  background: linear-gradient(135deg, var(--accent), #f472b6);
-  box-shadow: 0 0 24px rgba(129, 140, 248, 0.65);
+  object-fit: cover;
 }
 
 .nav-link,
@@ -262,4 +280,164 @@ textarea:focus-visible {
 .form-success {
   color: #86efac;
   font-size: 0.95rem;
+}
+
+/* Phantom Blend backgrounds */
+.phantom-blend__image {
+  filter: grayscale(0.35) saturate(0.65) brightness(0.55);
+  transform: scale(1.05);
+}
+
+.phantom-blend__tint {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(91, 127, 127, 0.18) 0%,
+    rgba(139, 168, 146, 0.12) 45%,
+    rgba(24, 28, 31, 0.35) 100%
+  );
+}
+
+.phantom-blend__fade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(24, 28, 31, 0.15) 0%,
+    rgba(24, 28, 31, 0.72) 55%,
+    var(--obsidian) 100%
+  );
+}
+
+.glass-panel--sage {
+  box-shadow: 0 0 0 1px rgba(139, 168, 146, 0.25), 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+.glass-panel--gold {
+  box-shadow: 0 0 0 1px rgba(212, 193, 147, 0.3), 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+.button-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0.75rem 1.25rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+  min-height: 2.75rem;
+}
+
+.button-link:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+.button-link--gold {
+  background: linear-gradient(135deg, var(--alchemy-gold), #b8a574);
+  color: var(--obsidian);
+}
+
+.button-link--gold:hover {
+  filter: brightness(1.05);
+}
+
+.button-link--sage {
+  background: linear-gradient(135deg, var(--sage), var(--ethereal-teal));
+  color: var(--obsidian);
+}
+
+.button-link--ghost {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--parchment);
+  border: 1px solid var(--surface-border);
+}
+
+.button-link--ghost:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.accreditation-badges {
+  margin-top: 1.5rem;
+}
+
+.accreditation-badges__seals {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+.accreditation-badges__image {
+  height: 4.5rem;
+  width: auto;
+  object-fit: contain;
+}
+
+.accreditation-badges__fallback {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 4rem;
+  height: 4rem;
+  border-radius: 999px;
+  border: 1px solid var(--surface-border);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.accreditation-badges__text {
+  margin-top: 0.75rem;
+  font-size: 0.95rem;
+  color: var(--parchment);
+}
+
+.bridge-links__title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--alchemy-gold);
+}
+
+.bridge-links__list {
+  margin-top: 1rem;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.bridge-links__description {
+  margin-top: 0.35rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.maintenance-page__inner {
+  padding-block: 3rem 4rem;
+}
+
+.maintenance-page__status {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.maintenance-page__footer-line {
+  margin-top: 2.5rem;
+  text-align: center;
+  font-size: 1rem;
+  color: var(--sage);
+}
+
+.hero-section__actions {
+  margin-top: 1.5rem;
+}
+
+.page-route {
+  min-height: calc(100dvh - 8rem);
 }
