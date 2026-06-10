@@ -436,8 +436,116 @@ textarea:focus-visible {
 
 .hero-section__actions {
   margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
 }
 
 .page-route {
   min-height: calc(100dvh - 8rem);
+}
+
+.section-heading__title {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--parchment);
+}
+
+.section-heading__description {
+  margin-top: 0.75rem;
+  max-width: 40rem;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+.home-hero__panel {
+  max-width: 48rem;
+  border: 1px solid rgba(139, 168, 146, 0.28);
+  background: rgba(24, 28, 31, 0.78);
+}
+
+.home-hero__title {
+  margin-top: 0.5rem;
+  font-size: clamp(2.25rem, 5.5vw, 3.75rem);
+  line-height: 1.05;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--parchment);
+  font-family: var(--font-display), var(--font-sans), system-ui, sans-serif;
+}
+
+.home-hero__lead {
+  margin-top: 1rem;
+  font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+  line-height: 1.5;
+  color: var(--alchemy-gold);
+  font-weight: 500;
+}
+
+.home-hero__tagline {
+  margin-top: 1rem;
+  max-width: 36rem;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--parchment);
+}
+
+.home-hero__practitioner {
+  margin-top: 0.75rem;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.home-pillar-card {
+  text-decoration: none;
+  color: inherit;
+}
+
+.home-pillar-card:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 4px;
+}
+
+.home-pillar-card__eyebrow {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ethereal-teal);
+}
+
+.home-pillar-card__title {
+  margin-top: 0.5rem;
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--parchment);
+  font-family: var(--font-display), var(--font-sans), system-ui, sans-serif;
+}
+
+.home-pillar-card__description {
+  margin-top: 0.75rem;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+.home-pillar-card__cta {
+  display: inline-flex;
+  margin-top: 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--sage);
+  transition: color 160ms ease;
+}
+
+.group:hover .home-pillar-card__cta,
+.group:focus-visible .home-pillar-card__cta {
+  color: var(--alchemy-gold);
+}
+
+.home-page__mantra {
+  font-family: var(--font-display), var(--font-sans), system-ui, sans-serif;
+  font-weight: 500;
 }

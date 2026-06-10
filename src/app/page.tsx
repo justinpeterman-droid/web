@@ -6,7 +6,7 @@ import { createPageMetadata } from "@/lib/metadata";
 export const metadata = createPageMetadata({
   title: "Home",
   description:
-    "Clinical hypnotherapy and behavioral coaching with Ashley Romero, CMH · CAHA.",
+    "Welcome to Hometown Serenity — nervous system healing, mind-body alchemy, and self-discovery with Ashley Romero, CMH · CAHA.",
   path: "/",
 });
 

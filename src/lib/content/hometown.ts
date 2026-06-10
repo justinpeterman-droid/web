@@ -11,28 +11,35 @@ export const hometownContent = {
       "Our full website is being refined. Everything you need is still here.",
   },
   home: {
-    eyebrow: "Clinical Hypnotherapy & Healing",
-    title: "Hometown Serenity",
+    eyebrow: "The Entryway",
+    title: "Welcome to Hometown Serenity",
     subtitle: PRACTITIONER_NAME,
     credentials: PRACTITIONER_CREDENTIALS,
     description:
+      "Nervous System Healing, Mind-Body Alchemy, and Self-Discovery.",
+    tagline:
       "Allow self-discovery to flow through you and illuminate your soul's purpose.",
     discoveryCta: "Book Free Discovery Call",
     pillars: [
       {
+        eyebrow: "The Grounding",
         title: "Services",
         description:
-          "Discovery calls, 1:1 integration sessions, and handwriting analysis.",
+          "Discovery calls, 1:1 integration sessions, and handwriting analysis in a grounded container.",
         href: "/services",
       },
       {
+        eyebrow: "The Flow",
         title: "Audio Library",
-        description: "Free sanctuary tracks and premium deep-dive audio.",
+        description:
+          "Open Sanctuary tracks for regulation, plus premium Deep Dive audio for integration.",
         href: "/audio-library",
       },
       {
+        eyebrow: "The Knowledge",
         title: "Inked Integration",
-        description: "Essays, spoken word, and reflective practices.",
+        description:
+          "Written essays, spoken word, and reflective practices for inner excavation.",
         href: "/inked-integration",
       },
     ],
