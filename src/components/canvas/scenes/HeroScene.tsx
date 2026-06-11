@@ -13,9 +13,9 @@ export function HeroScene({ isActive = true }: HeroSceneProps) {
 
   return (
     <>
-      <color attach="background" args={["#05070f"]} />
+      <color attach="background" args={["#181c1f"]} />
       <ambientLight intensity={0.45} />
-      <directionalLight position={[4, 6, 3]} intensity={0.9} color="#c7d2fe" />
+      <directionalLight position={[4, 6, 3]} intensity={0.85} color="#8ba892" />
 
       {!reducedMotion && <ParticleCloud isActive={particleActive} />}
     </>

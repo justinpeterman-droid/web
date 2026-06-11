@@ -55,6 +55,18 @@ export function SiteFooter() {
                 Indeed
               </a>
             </li>
+            {EXTERNAL_LINKS.youtubeChannel ? (
+              <li>
+                <a
+                  href={EXTERNAL_LINKS.youtubeChannel}
+                  className="footer-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  YouTube
+                </a>
+              </li>
+            ) : null}
           </ul>
         </div>
       </div>

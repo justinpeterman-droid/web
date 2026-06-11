@@ -20,7 +20,7 @@ export async function POST(request: Request) {
   const resendApiKey = process.env.RESEND_API_KEY;
   const contactTo = process.env.CONTACT_TO_EMAIL;
   const contactFrom =
-    process.env.CONTACT_FROM_EMAIL ?? "Portfolio <onboarding@resend.dev>";
+    process.env.CONTACT_FROM_EMAIL ?? "Hometown Serenity <onboarding@resend.dev>";
 
   if (!resendApiKey || !contactTo) {
     // Local/dev fallback so the form can be tested without secrets.

@@ -81,7 +81,11 @@ export function ContactForm() {
         ) : null}
       </div>
 
-      <button type="submit" className="button-primary" disabled={isSubmitting}>
+      <button
+        type="submit"
+        className="button-link button-link--gold"
+        disabled={isSubmitting}
+      >
         {isSubmitting ? "Sending..." : "Send message"}
       </button>
 

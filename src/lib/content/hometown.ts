@@ -110,6 +110,45 @@ export const hometownContent = {
     openSanctuary,
     deepDive,
   },
+  services: {
+    eyebrow: "The Grounding",
+    title: "Work With Me",
+    description:
+      "Step into a container of intentional healing. Beyond the roles of parent, spouse, and professional lives an identity waiting to be remembered — not fixed, but found. Discovery calls, integration sessions, and handwriting insight meet you where you are.",
+    offerings: [
+      {
+        id: "discovery",
+        title: "Discovery Call",
+        description: "A complimentary conversation to explore fit, direction, and what your nervous system is asking for.",
+        href: EXTERNAL_LINKS.discoveryCall,
+        cta: "Book Free Discovery Call",
+        variant: "gold" as const,
+        glow: "none" as const,
+        featured: false,
+      },
+      {
+        id: "integration",
+        title: "1:1 Integration Session",
+        description:
+          "Personalized clinical hypnotherapy and behavioral coaching in a grounded, somatic-aware container.",
+        href: EXTERNAL_LINKS.integrationSession,
+        cta: "Schedule Session",
+        variant: "gold" as const,
+        glow: "gold" as const,
+        featured: true,
+      },
+      {
+        id: "handwriting",
+        title: "Handwriting Analysis",
+        description: "Submit a sample for integrative handwriting insight — a mirror for patterns held in the hand.",
+        href: EXTERNAL_LINKS.handwritingJotform,
+        cta: "Free Mini Reading",
+        variant: "sage" as const,
+        glow: "sage" as const,
+        featured: false,
+      },
+    ],
+  },
   inkedIntegration: {
     eyebrow: "The Knowledge",
     title: "Inked Integration",

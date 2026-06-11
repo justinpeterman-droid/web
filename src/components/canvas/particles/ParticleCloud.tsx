@@ -37,9 +37,9 @@ function createParticleUniforms(): ParticleUniforms {
     uPointScale: { value: 1 },
     uWarp: { value: 0.35 },
     uDensity: { value: 1 },
-    uTealMix: { value: 0.72 },
-    uColorTeal: { value: new Color("#009EC9") },
-    uColorNeutral: { value: new Color("#D8DEE4") },
+    uTealMix: { value: 0.68 },
+    uColorTeal: { value: new Color("#5b7b7f") },
+    uColorNeutral: { value: new Color("#8ba892") },
   };
 }
 

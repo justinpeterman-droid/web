@@ -49,7 +49,13 @@ export default function AboutPage() {
                 Let&apos;s Connect
               </h2>
               <p className="mt-3 text-sm text-[var(--color-muted)]">
-                {EXTERNAL_LINKS.phoneDisplay} · {EXTERNAL_LINKS.emailDisplay}
+                <a href={EXTERNAL_LINKS.phone} className="footer-link">
+                  {EXTERNAL_LINKS.phoneDisplay}
+                </a>
+                {" · "}
+                <a href={EXTERNAL_LINKS.email} className="footer-link">
+                  {EXTERNAL_LINKS.emailDisplay}
+                </a>
               </p>
               <ContactForm />
             </GlassPanel>

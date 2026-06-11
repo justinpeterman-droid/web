@@ -6,7 +6,6 @@ import { AboutScene } from "@/components/canvas/scenes/AboutScene";
 import { ContactScene } from "@/components/canvas/scenes/ContactScene";
 import { DefaultScene } from "@/components/canvas/scenes/DefaultScene";
 import { HeroScene } from "@/components/canvas/scenes/HeroScene";
-import { WorkDetailScene } from "@/components/canvas/scenes/WorkDetailScene";
 import { WorkScene } from "@/components/canvas/scenes/WorkScene";
 
 function SceneLoader() {
@@ -29,7 +28,6 @@ export function SceneRenderer({ isCanvasActive = true }: SceneRendererProps) {
     <Suspense fallback={<SceneLoader />}>
       {scene.id === "hero" && <HeroScene isActive={isCanvasActive} />}
       {scene.id === "work" && <WorkScene />}
-      {scene.id === "work-detail" && <WorkDetailScene slug={scene.slug} />}
       {scene.id === "about" && <AboutScene />}
       {scene.id === "contact" && <ContactScene />}
       {scene.id === "default" && <DefaultScene />}
