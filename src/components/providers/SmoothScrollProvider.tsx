@@ -23,6 +23,10 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
       smoothWheel: true,
     });
 
+    lenis.on("scroll", () => {
+      window.dispatchEvent(new CustomEvent("canvas:activity"));
+    });
+
     let frame = 0;
     const raf = (time: number) => {
       lenis.raf(time);

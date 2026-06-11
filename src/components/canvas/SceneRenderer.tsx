@@ -18,12 +18,16 @@ function SceneLoader() {
   );
 }
 
-export function SceneRenderer() {
+type SceneRendererProps = {
+  isCanvasActive?: boolean;
+};
+
+export function SceneRenderer({ isCanvasActive = true }: SceneRendererProps) {
   const { scene } = useCanvas();
 
   return (
     <Suspense fallback={<SceneLoader />}>
-      {scene.id === "hero" && <HeroScene />}
+      {scene.id === "hero" && <HeroScene isActive={isCanvasActive} />}
       {scene.id === "work" && <WorkScene />}
       {scene.id === "work-detail" && <WorkDetailScene slug={scene.slug} />}
       {scene.id === "about" && <AboutScene />}
