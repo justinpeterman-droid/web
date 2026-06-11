@@ -1,5 +1,6 @@
 import { EXTERNAL_LINKS, PRACTITIONER_CREDENTIALS, PRACTITIONER_NAME } from "@/lib/constants";
 import type { AudioLibrarySection } from "@/types/audio";
+import type { InkedWrittenWord, InkedSpokenWord } from "@/types/inked";
 
 const openSanctuary: AudioLibrarySection = {
   title: "Open Sanctuary",
@@ -108,6 +109,51 @@ export const hometownContent = {
       "Sound is fluid medicine for the nervous system. Open Sanctuary tracks are free to play and download. Deep Dive sessions are premium audio for deeper integration work.",
     openSanctuary,
     deepDive,
+  },
+  inkedIntegration: {
+    eyebrow: "The Knowledge",
+    title: "Inked Integration",
+    description:
+      "Written essays and spoken reflections for inner excavation — identity beyond roles, nervous-system literacy, and the slow work of coming home to yourself.",
+    writtenWord: {
+      title: "The Written Word",
+      description:
+        "Long-form essays on Substack — reflective, integrative, and grounded in clinical hypnotherapy and mind-body practice.",
+      essays: [
+        {
+          id: "beyond-titles",
+          title: "You Are More Than the Titles You Hold",
+          excerpt:
+            "Parent, partner, professional — the roles are real, but they are not the whole of you. What remains when the labels quiet down?",
+          // href: `${EXTERNAL_LINKS.substackPublication}/p/beyond-titles`,
+        },
+        {
+          id: "empty-room",
+          title: "Who Are You When No One Is in the Room?",
+          excerpt:
+            "The nervous system keeps score of every performance. Here is an invitation to meet the self that exists before the audience arrives.",
+          // href: `${EXTERNAL_LINKS.substackPublication}/p/empty-room`,
+        },
+        {
+          id: "peeling-layers",
+          title: "Peeling Back the Inherited Layers",
+          excerpt:
+            "Identity reconstruction is not reinvention for its own sake — it is archaeology. Gentle excavation toward what already wants to emerge.",
+          // href: `${EXTERNAL_LINKS.substackPublication}/p/peeling-layers`,
+        },
+      ] satisfies InkedWrittenWord["essays"],
+      optInTitle: "Receive new essays",
+      optInDescription:
+        "Join the Inked Integration list on Substack for essays on identity, regulation, and soul-purpose work.",
+    } satisfies InkedWrittenWord,
+    spokenWord: {
+      title: "The Spoken Word",
+      description:
+        "Video reflections and guided language for the subconscious — watch, pause, and let the imagery land.",
+      channelDescription:
+        "The Spoken Word channel holds reflective videos, integrative teachings, and nervous-system-aware language for the subconscious mind. Subscribe for new reflections as they are released.",
+      subscribeLabel: "Subscribe on YouTube",
+    } satisfies InkedSpokenWord,
   },
   about: {
     eyebrow: "A Fellow Traveler on the Path to Self-Discovery.",

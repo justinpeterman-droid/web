@@ -31,6 +31,12 @@ export const EXTERNAL_LINKS = {
     "https://www.instagram.com/hometownserenity?igsh=emI5aG9ubnY4M3U3&utm_source=qr",
   facebook: "https://www.facebook.com/profile.php?id=61583873646491",
   indeed: "https://profile.indeed.com/p/ashleyr-y56g66d",
+  /** Substack publication + subscribe — wire when live */
+  substackPublication: "",
+  substackSubscribe: "",
+  /** YouTube channel + one featured embed ID */
+  youtubeChannel: "",
+  youtubeFeaturedVideoId: "",
 } as const;
 
 export const ROUTE_SCENE_MAP: Record<string, SceneId> = {

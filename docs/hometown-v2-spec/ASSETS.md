@@ -40,6 +40,19 @@ Wire MP3s here, then uncomment `audioSrc` in `src/lib/content/hometown.ts`.
 
 Premium Deep Dive tracks use `checkoutUrl` in content (not local MP3 until purchased).
 
+## Inked Integration (Phase 5)
+
+Wire in `src/lib/constants.ts`:
+
+| Constant | Purpose |
+|----------|---------|
+| `substackPublication` | Publication home URL |
+| `substackSubscribe` | Subscribe endpoint (email pre-fill) |
+| `youtubeChannel` | Channel URL for Subscribe CTA |
+| `youtubeFeaturedVideoId` | Featured embed ID (lazy-loaded player) |
+
+Uncomment per-essay `href` in `hometown.ts` when Substack posts are live.
+
 ## About portrait (pending)
 
 `about/ashley-romero-headshot.webp` — Phase 7

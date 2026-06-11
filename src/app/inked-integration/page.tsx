@@ -1,10 +1,14 @@
+import { InkedIntegrationSections } from "@/components/inked/InkedIntegrationSections";
 import { PageShell } from "@/components/layout/PageShell";
-import { GlassPanel } from "@/components/ui/GlassPanel";
+import { hometownContent } from "@/lib/content/hometown";
 import { createPageMetadata } from "@/lib/metadata";
+
+const { inkedIntegration } = hometownContent;
 
 export const metadata = createPageMetadata({
   title: "Inked Integration",
-  description: "Essays, spoken word, and reflective practices.",
+  description:
+    "Written essays and spoken word reflections on identity, nervous-system healing, and inner excavation.",
   path: "/inked-integration",
 });
 
@@ -12,18 +16,11 @@ export default function InkedIntegrationPage() {
   return (
     <PageShell
       backgroundKey="inked"
-      eyebrow="The Knowledge"
-      title="Inked Integration"
-      description="Written word essays and spoken word reflections — full layout in Demo 5."
+      eyebrow={inkedIntegration.eyebrow}
+      title={inkedIntegration.title}
+      description={inkedIntegration.description}
     >
-      <GlassPanel className="p-6">
-        <h2 className="text-xl font-semibold text-[var(--color-parchment)]">
-          Written & Spoken Word
-        </h2>
-        <p className="mt-3 text-sm text-[var(--color-muted)]">
-          Substack and YouTube URLs pending — essay cards and embed land in Phase 5.
-        </p>
-      </GlassPanel>
+      <InkedIntegrationSections />
     </PageShell>
   );
 }
