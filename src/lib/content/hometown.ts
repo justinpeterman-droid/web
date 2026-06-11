@@ -1,4 +1,61 @@
 import { EXTERNAL_LINKS, PRACTITIONER_CREDENTIALS, PRACTITIONER_NAME } from "@/lib/constants";
+import type { AudioLibrarySection } from "@/types/audio";
+
+const openSanctuary: AudioLibrarySection = {
+  title: "Open Sanctuary",
+  subtitle: "Free grounding and nervous-system regulation tracks — play or download anytime.",
+  tracks: [
+    {
+      id: "grounding-nervous-system",
+      title: "Grounding the Nervous System",
+      description:
+        "A gentle somatic reset to settle activation, soften the breath, and return to baseline.",
+      duration: "12 min",
+      // audioSrc: "/audio/grounding-nervous-system.mp3",
+    },
+    {
+      id: "evening-downshift",
+      title: "Evening Downshift",
+      description:
+        "Wind down the day with paced imagery and soft vocal cues for parasympathetic ease.",
+      duration: "10 min",
+      // audioSrc: "/audio/evening-downshift.mp3",
+    },
+    {
+      id: "safe-container",
+      title: "Safe Container Visualization",
+      description:
+        "Build an internal sanctuary you can return to when the world feels too loud.",
+      duration: "14 min",
+      // audioSrc: "/audio/safe-container.mp3",
+    },
+  ],
+};
+
+const deepDive: AudioLibrarySection = {
+  title: "Deep Dive",
+  subtitle: "Premium hypnotherapy audio for subconscious integration and dreamwork.",
+  tracks: [
+    {
+      id: "subconscious-dream-walk",
+      title: "Subconscious Dream Walk",
+      description:
+        "A guided descent into symbolic imagery to meet the messages beneath waking life.",
+      duration: "28 min",
+      price: "$24",
+      // checkoutUrl: "https://…",
+    },
+    {
+      id: "identity-reconstruction",
+      title: "Identity Reconstruction",
+      description:
+        "Peel back inherited roles and rehearse an identity that feels authentically yours.",
+      duration: "32 min",
+      price: "$28",
+      // checkoutUrl: "https://…",
+    },
+  ],
+};
 
 export const hometownContent = {
   maintenance: {
@@ -43,6 +100,14 @@ export const hometownContent = {
         href: "/inked-integration",
       },
     ],
+  },
+  audioLibrary: {
+    eyebrow: "The Flow",
+    title: "Audio Library",
+    description:
+      "Sound is fluid medicine for the nervous system. Open Sanctuary tracks are free to play and download. Deep Dive sessions are premium audio for deeper integration work.",
+    openSanctuary,
+    deepDive,
   },
   about: {
     eyebrow: "A Fellow Traveler on the Path to Self-Discovery.",

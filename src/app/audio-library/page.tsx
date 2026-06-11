@@ -1,10 +1,14 @@
+import { AudioLibraryPanels } from "@/components/audio/AudioLibraryPanels";
 import { PageShell } from "@/components/layout/PageShell";
-import { GlassPanel } from "@/components/ui/GlassPanel";
+import { hometownContent } from "@/lib/content/hometown";
 import { createPageMetadata } from "@/lib/metadata";
+
+const { audioLibrary } = hometownContent;
 
 export const metadata = createPageMetadata({
   title: "Audio Library",
-  description: "Free sanctuary audio and premium deep-dive tracks.",
+  description:
+    "Free Open Sanctuary audio for nervous-system regulation and premium Deep Dive hypnotherapy tracks.",
   path: "/audio-library",
 });
 
@@ -12,28 +16,11 @@ export default function AudioLibraryPage() {
   return (
     <PageShell
       backgroundKey="audio"
-      eyebrow="The Flow"
-      title="Audio Library"
-      description="Open Sanctuary tracks are free to play and download. Deep Dive sessions are premium audio for deeper integration work."
+      eyebrow={audioLibrary.eyebrow}
+      title={audioLibrary.title}
+      description={audioLibrary.description}
     >
-      <div className="grid gap-6 md:grid-cols-2">
-        <GlassPanel glow="sage" className="p-6">
-          <h2 className="text-xl font-semibold text-[var(--color-parchment)]">
-            Open Sanctuary
-          </h2>
-          <p className="mt-3 text-sm text-[var(--color-muted)]">
-            Free grounding and nervous-system regulation tracks — coming in Demo 3.
-          </p>
-        </GlassPanel>
-        <GlassPanel glow="gold" className="p-6">
-          <h2 className="text-xl font-semibold text-[var(--color-parchment)]">
-            Deep Dive
-          </h2>
-          <p className="mt-3 text-sm text-[var(--color-muted)]">
-            Premium audio purchases — checkout URLs pending.
-          </p>
-        </GlassPanel>
-      </div>
+      <AudioLibraryPanels />
     </PageShell>
   );
 }

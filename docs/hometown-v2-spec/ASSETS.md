@@ -28,6 +28,18 @@ Current files are **Pexels stock placeholders** until Ashley's originals are com
 
 Until exported, `AccreditationBadges` shows fallback labels (AHA, HMI, ISSA).
 
+## Audio tracks (`public/audio/`)
+
+Wire MP3s here, then uncomment `audioSrc` in `src/lib/content/hometown.ts`.
+
+| File | Track ID | Tier |
+|------|----------|------|
+| `grounding-nervous-system.mp3` | `grounding-nervous-system` | Open Sanctuary (free) |
+| `evening-downshift.mp3` | `evening-downshift` | Open Sanctuary (free) |
+| `safe-container.mp3` | `safe-container` | Open Sanctuary (free) |
+
+Premium Deep Dive tracks use `checkoutUrl` in content (not local MP3 until purchased).
+
 ## About portrait (pending)
 
 `about/ashley-romero-headshot.webp` — Phase 7
