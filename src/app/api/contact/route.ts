@@ -23,6 +23,13 @@ export async function POST(request: Request) {
     process.env.CONTACT_FROM_EMAIL ?? "Hometown Serenity <onboarding@resend.dev>";
 
   if (!resendApiKey || !contactTo) {
+    if (process.env.NODE_ENV === "production") {
+      return NextResponse.json(
+        { error: "Contact email is not configured." },
+        { status: 503 },
+      );
+    }
+
     // Local/dev fallback so the form can be tested without secrets.
     console.info("[contact] message received", { name, email, message });
     return NextResponse.json({ ok: true, mode: "log" });
