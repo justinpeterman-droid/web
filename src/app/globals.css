@@ -272,6 +272,15 @@ textarea:focus-visible {
   cursor: wait;
 }
 
+/* Honeypot — visually and from-the-flow hidden, but still focusable-skipped. */
+.contact-form__honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 .form-error {
   color: #fda4af;
   font-size: 0.875rem;
