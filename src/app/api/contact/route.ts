@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { z } from "zod";
+import { resolveContactDeliveryMode } from "@/lib/contactDeliveryMode";
 
 const contactSchema = z.object({
   name: z.string().min(2),
@@ -22,10 +23,35 @@ export async function POST(request: Request) {
   const contactFrom =
     process.env.CONTACT_FROM_EMAIL ?? "Hometown Serenity <onboarding@resend.dev>";
 
-  if (!resendApiKey || !contactTo) {
+  const deliveryMode = resolveContactDeliveryMode({
+    resendApiKey,
+    contactTo,
+    nodeEnv: process.env.NODE_ENV,
+    vercelEnv: process.env.VERCEL_ENV,
+  });
+
+  if (deliveryMode === "unavailable") {
+    console.error("[contact] email delivery is not configured", {
+      hasResendApiKey: Boolean(resendApiKey),
+      hasContactTo: Boolean(contactTo),
+    });
+    return NextResponse.json(
+      { error: "Email delivery is not configured." },
+      { status: 503 },
+    );
+  }
+
+  if (deliveryMode === "log") {
     // Local/dev fallback so the form can be tested without secrets.
     console.info("[contact] message received", { name, email, message });
     return NextResponse.json({ ok: true, mode: "log" });
+  }
+
+  if (!resendApiKey || !contactTo) {
+    return NextResponse.json(
+      { error: "Email delivery is not configured." },
+      { status: 503 },
+    );
   }
 
   const resend = new Resend(resendApiKey);
