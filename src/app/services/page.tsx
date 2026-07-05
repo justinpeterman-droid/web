@@ -1,4 +1,5 @@
 import { PageShell } from "@/components/layout/PageShell";
+import { Reveal } from "@/components/motion/Reveal";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { GlassPanel } from "@/components/ui/GlassPanel";
 import { hometownContent } from "@/lib/content/hometown";
@@ -20,7 +21,7 @@ export default function ServicesPage() {
       title={services.title}
       description={services.description}
     >
-      <div className="grid gap-6 md:grid-cols-3">
+      <Reveal className="grid gap-6 md:grid-cols-3" stagger={0.12}>
         {services.offerings.map((offering) => (
           <GlassPanel
             key={offering.id}
@@ -41,7 +42,7 @@ export default function ServicesPage() {
             </ButtonLink>
           </GlassPanel>
         ))}
-      </div>
+      </Reveal>
     </PageShell>
   );
 }

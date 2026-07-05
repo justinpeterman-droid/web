@@ -291,6 +291,29 @@ textarea:focus-visible {
   font-size: 0.95rem;
 }
 
+/* Entrance choreography — pure CSS so the global reduced-motion
+   kill-switch above zeroes it automatically. */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.rise-in {
+  animation: rise-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.rise-in--1 { animation-delay: 0.08s; }
+.rise-in--2 { animation-delay: 0.16s; }
+.rise-in--3 { animation-delay: 0.24s; }
+.rise-in--4 { animation-delay: 0.32s; }
+.rise-in--5 { animation-delay: 0.4s; }
+
 /* Phantom Blend backgrounds */
 .phantom-blend__image {
   filter: grayscale(0.35) saturate(0.65) brightness(0.55);

@@ -1,6 +1,8 @@
 export type SceneId =
   | "hero"
+  | "audio"
   | "work"
+  | "inked"
   | "about"
   | "contact"
   | "default";

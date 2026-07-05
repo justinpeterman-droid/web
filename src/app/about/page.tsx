@@ -1,4 +1,5 @@
 import { ContactForm } from "@/components/contact/ContactForm";
+import { Reveal } from "@/components/motion/Reveal";
 import { AccreditationBadges } from "@/components/ui/AccreditationBadges";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { GlassPanel } from "@/components/ui/GlassPanel";
@@ -20,7 +21,7 @@ export default function AboutPage() {
     <main id="main-content" className="about-page relative pb-20">
       <PhantomBlendBackground backgroundKey="about" />
       <div className="container-shell pt-10">
-        <div className="grid gap-10 lg:grid-cols-2">
+        <Reveal className="grid gap-10 lg:grid-cols-2" stagger={0.15}>
           <section className="about-page__guide">
             <p className="eyebrow">{about.eyebrow}</p>
             <h1 className="page-title">{about.title}</h1>
@@ -60,7 +61,7 @@ export default function AboutPage() {
               <ContactForm />
             </GlassPanel>
           </section>
-        </div>
+        </Reveal>
       </div>
     </main>
   );

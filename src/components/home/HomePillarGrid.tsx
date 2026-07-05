@@ -1,4 +1,5 @@
 import { hometownContent } from "@/lib/content/hometown";
+import { Reveal } from "@/components/motion/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { HomePillarCard } from "./HomePillarCard";
 
@@ -14,7 +15,7 @@ export function HomePillarGrid() {
         description="Each doorway opens a different layer of healing, reflection, and integration."
         className="mb-8"
       />
-      <div className="grid gap-5 md:grid-cols-3">
+      <Reveal className="grid gap-5 md:grid-cols-3" stagger={0.12}>
         {home.pillars.map((pillar, index) => (
           <HomePillarCard
             key={pillar.href}
@@ -25,7 +26,7 @@ export function HomePillarGrid() {
             glow={index === 1 ? "gold" : "sage"}
           />
         ))}
-      </div>
+      </Reveal>
     </section>
   );
 }

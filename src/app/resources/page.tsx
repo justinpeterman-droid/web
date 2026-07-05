@@ -1,4 +1,5 @@
 import { PageShell } from "@/components/layout/PageShell";
+import { Reveal } from "@/components/motion/Reveal";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { GlassPanel } from "@/components/ui/GlassPanel";
 import { EXTERNAL_LINKS } from "@/lib/constants";
@@ -18,7 +19,7 @@ export default function ResourcesPage() {
       title="Resources & Tools"
       description="Gold and Sage toolkit offerings from the Sanctuary collection."
     >
-      <div className="grid gap-6 md:grid-cols-2">
+      <Reveal className="grid gap-6 md:grid-cols-2" stagger={0.12}>
         <GlassPanel glow="gold" className="p-6">
           <h2 className="text-xl font-semibold text-[var(--color-parchment)]">
             Dream Journal Sample
@@ -51,7 +52,7 @@ export default function ResourcesPage() {
             Open App
           </ButtonLink>
         </GlassPanel>
-      </div>
+      </Reveal>
     </PageShell>
   );
 }

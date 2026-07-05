@@ -41,9 +41,9 @@ export const EXTERNAL_LINKS = {
 
 export const ROUTE_SCENE_MAP: Record<string, SceneId> = {
   "/": "hero",
-  "/audio-library": "work",
+  "/audio-library": "audio",
   "/services": "work",
-  "/inked-integration": "about",
+  "/inked-integration": "inked",
   "/resources": "hero",
   "/about": "about",
   "/contact": "contact",
