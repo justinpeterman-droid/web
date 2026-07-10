@@ -1,0 +1,10 @@
+{
+  "pkg": "@hometown-serenity/ui",
+  "globalName": "HometownSerenityUI",
+  "projectId": "a23df583-4224-4c12-b38b-abdcca1f7da3",
+  "shape": "package",
+  "buildCmd": "pnpm build",
+  "cssEntry": "dist/styles.css",
+  "tokensGlob": "src/tokens.css",
+  "readmeHeader": ".design-sync/conventions.md"
+}

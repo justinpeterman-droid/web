@@ -1,0 +1,32 @@
+/**
+ * Sage & Obsidian Alchemy — design tokens.
+ * Source of truth: apps/web's src/app/globals.css. Keep in sync by hand;
+ * these are the same hex values, extracted so this package has no
+ * dependency on the host app's Tailwind theme layer.
+ */
+:root {
+  --obsidian: #181c1f;
+  --sage: #8ba892;
+  --ethereal-teal: #5b7b7f;
+  --alchemy-gold: #d4c193;
+  --parchment: #f7f7f2;
+
+  --background: var(--obsidian);
+  --foreground: var(--parchment);
+  --muted: #a8b0b4;
+  --accent: var(--sage);
+  --accent-strong: var(--alchemy-gold);
+  --surface: rgba(24, 28, 31, 0.72);
+  --surface-border: rgba(139, 168, 146, 0.22);
+  --focus-ring: var(--alchemy-gold);
+
+  --radius-lg: 1.25rem;
+  --radius-md: 0.875rem;
+  --shadow-soft: 0 24px 80px rgba(0, 0, 0, 0.45);
+
+  /* Host app loads Outfit/Inter via next/font; consumers without that
+     pipeline should load them from Google Fonts (or another source) —
+     these stacks degrade gracefully to system-ui otherwise. */
+  --font-display: "Outfit", system-ui, sans-serif;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+}
