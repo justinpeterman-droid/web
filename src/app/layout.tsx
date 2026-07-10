@@ -7,6 +7,7 @@ import { SkipLink } from "@/components/layout/SkipLink";
 import { AppProviders } from "@/components/providers/AppProviders";
 import { RouteSceneSync } from "@/components/providers/RouteSceneSync";
 import { createPageMetadata } from "@/lib/metadata";
+import { getStructuredData } from "@/lib/structured-data";
 import "./globals.css";
 
 const outfit = Outfit({
@@ -34,6 +35,12 @@ export default function RootLayout({
       className={`${outfit.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(getStructuredData()),
+          }}
+        />
         <AppProviders>
           <SkipLink />
           <PersistentCanvasLazy />

@@ -1,0 +1,38 @@
+.accreditation-badges {
+  margin-top: 1.5rem;
+}
+
+.accreditation-badges__seals {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+.accreditation-badges__image {
+  height: 4.5rem;
+  width: auto;
+  object-fit: contain;
+}
+
+.accreditation-badges__fallback {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 4rem;
+  height: 4rem;
+  border-radius: 999px;
+  border: 1px solid var(--surface-border);
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.accreditation-badges__text {
+  margin-top: 0.75rem;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: var(--parchment);
+}

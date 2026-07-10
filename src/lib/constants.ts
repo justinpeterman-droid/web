@@ -41,22 +41,22 @@ export const EXTERNAL_LINKS = {
 
 export const ROUTE_SCENE_MAP: Record<string, SceneId> = {
   "/": "hero",
-  "/audio-library": "work",
+  "/audio-library": "audio",
   "/services": "work",
-  "/inked-integration": "about",
+  "/inked-integration": "inked",
   "/resources": "hero",
   "/about": "about",
   "/contact": "contact",
 };
 
 export const BACKGROUND_IMAGES = {
-  home: "/images/backgrounds/home-celestial.jpg",
-  audio: "/images/backgrounds/audio-water-ripples.jpg",
-  services: "/images/backgrounds/services-forest.jpg",
-  inked: "/images/backgrounds/inked-bookshelf.jpg",
-  resources: "/images/backgrounds/home-celestial.jpg",
-  about: "/images/backgrounds/about-mountains.jpg",
-  maintenance: "/images/backgrounds/home-celestial.jpg",
+  home: "/images/backgrounds/home-celestial.webp",
+  audio: "/images/backgrounds/audio-water-ripples.webp",
+  services: "/images/backgrounds/services-forest.webp",
+  inked: "/images/backgrounds/inked-bookshelf.webp",
+  resources: "/images/backgrounds/home-celestial.webp",
+  about: "/images/backgrounds/about-mountains.webp",
+  maintenance: "/images/backgrounds/home-celestial.webp",
 } as const;
 
 export type BackgroundKey = keyof typeof BACKGROUND_IMAGES;

@@ -1,36 +1,28 @@
 "use client";
 
-import { Suspense } from "react";
 import { useCanvas } from "@/components/providers/CanvasProvider";
-import { AboutScene } from "@/components/canvas/scenes/AboutScene";
-import { ContactScene } from "@/components/canvas/scenes/ContactScene";
-import { DefaultScene } from "@/components/canvas/scenes/DefaultScene";
-import { HeroScene } from "@/components/canvas/scenes/HeroScene";
-import { WorkScene } from "@/components/canvas/scenes/WorkScene";
-
-function SceneLoader() {
-  return (
-    <mesh>
-      <sphereGeometry args={[0.35, 16, 16]} />
-      <meshBasicMaterial color="#4b5563" wireframe />
-    </mesh>
-  );
-}
+import { ParticleCloud } from "@/components/canvas/particles";
 
 type SceneRendererProps = {
   isCanvasActive?: boolean;
 };
 
+/**
+ * One continuous world: a single always-mounted ParticleCloud that morphs
+ * between per-route personalities (see SCENE_PARTICLE_PROFILES). Route changes
+ * never remount geometry — they only retarget uniforms, so navigation reads
+ * as a smooth crossfade of density, motion, and color.
+ */
 export function SceneRenderer({ isCanvasActive = true }: SceneRendererProps) {
   const { scene } = useCanvas();
 
   return (
-    <Suspense fallback={<SceneLoader />}>
-      {scene.id === "hero" && <HeroScene isActive={isCanvasActive} />}
-      {scene.id === "work" && <WorkScene />}
-      {scene.id === "about" && <AboutScene />}
-      {scene.id === "contact" && <ContactScene />}
-      {scene.id === "default" && <DefaultScene />}
-    </Suspense>
+    <>
+      <color attach="background" args={["#181c1f"]} />
+      <ambientLight intensity={0.45} />
+      <directionalLight position={[4, 6, 3]} intensity={0.85} color="#8ba892" />
+
+      <ParticleCloud sceneId={scene.id} isActive={isCanvasActive} />
+    </>
   );
 }

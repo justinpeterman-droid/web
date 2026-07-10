@@ -1,0 +1,42 @@
+.button-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0.75rem 1.25rem;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+  min-height: 2.75rem;
+}
+
+.button-link:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+.button-link--gold {
+  background: linear-gradient(135deg, var(--alchemy-gold), #b8a574);
+  color: var(--obsidian);
+}
+
+.button-link--gold:hover {
+  filter: brightness(1.05);
+}
+
+.button-link--sage {
+  background: linear-gradient(135deg, var(--sage), var(--ethereal-teal));
+  color: var(--obsidian);
+}
+
+.button-link--ghost {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--parchment);
+  border: 1px solid var(--surface-border);
+}
+
+.button-link--ghost:hover {
+  background: rgba(255, 255, 255, 0.1);
+}

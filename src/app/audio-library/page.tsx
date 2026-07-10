@@ -1,5 +1,6 @@
 import { AudioLibraryPanels } from "@/components/audio/AudioLibraryPanels";
 import { PageShell } from "@/components/layout/PageShell";
+import { Reveal } from "@/components/motion/Reveal";
 import { hometownContent } from "@/lib/content/hometown";
 import { createPageMetadata } from "@/lib/metadata";
 
@@ -20,7 +21,9 @@ export default function AudioLibraryPage() {
       title={audioLibrary.title}
       description={audioLibrary.description}
     >
-      <AudioLibraryPanels />
+      <Reveal>
+        <AudioLibraryPanels />
+      </Reveal>
     </PageShell>
   );
 }

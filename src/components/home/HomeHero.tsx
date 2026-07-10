@@ -9,16 +9,16 @@ export function HomeHero() {
   return (
     <section className="hero-section container-shell" aria-labelledby="home-hero-title">
       <GlassPanel className="home-hero__panel p-8 md:p-10">
-        <p className="eyebrow">{home.eyebrow}</p>
-        <h1 id="home-hero-title" className="home-hero__title">
+        <p className="eyebrow rise-in">{home.eyebrow}</p>
+        <h1 id="home-hero-title" className="home-hero__title rise-in rise-in--1">
           {home.title}
         </h1>
-        <p className="home-hero__lead">{home.description}</p>
-        <p className="home-hero__tagline">{home.tagline}</p>
-        <p className="home-hero__practitioner">
+        <p className="home-hero__lead rise-in rise-in--2">{home.description}</p>
+        <p className="home-hero__tagline rise-in rise-in--3">{home.tagline}</p>
+        <p className="home-hero__practitioner rise-in rise-in--4">
           {home.subtitle}, {home.credentials}
         </p>
-        <div className="hero-section__actions">
+        <div className="hero-section__actions rise-in rise-in--5">
           <ButtonLink href={EXTERNAL_LINKS.discoveryCall} variant="gold" external>
             {home.discoveryCta}
           </ButtonLink>

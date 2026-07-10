@@ -1,5 +1,6 @@
 import { InkedIntegrationSections } from "@/components/inked/InkedIntegrationSections";
 import { PageShell } from "@/components/layout/PageShell";
+import { Reveal } from "@/components/motion/Reveal";
 import { hometownContent } from "@/lib/content/hometown";
 import { createPageMetadata } from "@/lib/metadata";
 
@@ -20,7 +21,9 @@ export default function InkedIntegrationPage() {
       title={inkedIntegration.title}
       description={inkedIntegration.description}
     >
-      <InkedIntegrationSections />
+      <Reveal>
+        <InkedIntegrationSections />
+      </Reveal>
     </PageShell>
   );
 }

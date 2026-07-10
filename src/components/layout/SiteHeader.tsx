@@ -14,7 +14,7 @@ export function SiteHeader() {
       <div className="container-shell flex items-center justify-between gap-6 py-5">
         <Link href="/" className="brand-link">
           <Image
-            src="/images/brand/hometown-serenity-logo-mark.png"
+            src="/images/brand/hometown-serenity-logo-mark.webp"
             alt=""
             width={36}
             height={36}
