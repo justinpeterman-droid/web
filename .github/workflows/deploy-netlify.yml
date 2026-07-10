@@ -41,6 +41,9 @@ jobs:
 
       # `netlify deploy --build` runs the build through Netlify's build system
       # locally in CI (netlify.toml + @netlify/plugin-nextjs), then uploads the
-      # result to the hometown-serenity-preview site.
+      # result to the hometown-serenity-preview site. `--filter web` picks the
+      # root app explicitly — packages/ui (a pnpm workspace member) makes
+      # this a monorepo, and Netlify CLI otherwise refuses to guess which
+      # project to build.
       - name: Build and deploy
-        run: npx -y netlify-cli@latest deploy --build --prod
+        run: npx -y netlify-cli@latest deploy --build --prod --filter web
