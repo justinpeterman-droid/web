@@ -1,3 +1,4 @@
+import { connection } from "next/server";
 import { HomePageContent } from "@/components/home/HomePageContent";
 import { MaintenanceBridge } from "@/components/maintenance/MaintenanceBridge";
 import { isMaintenanceMode } from "@/lib/env";
@@ -10,7 +11,10 @@ export const metadata = createPageMetadata({
   path: "/",
 });
 
-export default function HomePage() {
+export default async function HomePage() {
+  // Maintenance mode is a runtime launch toggle; avoid prerendering a stale flag.
+  await connection();
+
   if (isMaintenanceMode()) {
     return <MaintenanceBridge />;
   }
