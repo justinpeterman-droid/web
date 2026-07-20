@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { SITE_NAME, SITE_TAGLINE } from "@/lib/constants";
-
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+import { getPublicSiteUrl } from "@/lib/site-url";
 
 export function createPageMetadata({
   title,
@@ -15,6 +13,7 @@ export function createPageMetadata({
 }): Metadata {
   const pageTitle = title ? `${title} · ${SITE_NAME}` : SITE_NAME;
   const pageDescription = description ?? SITE_TAGLINE;
+  const siteUrl = getPublicSiteUrl();
 
   return {
     title: pageTitle,
