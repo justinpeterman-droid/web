@@ -9,7 +9,7 @@ const contactSchema = z.object({
   name: z.string().min(2, "Please enter your name."),
   email: z.string().email("Please enter a valid email."),
   message: z.string().min(12, "Please share a bit more detail."),
-  company: z.string().optional(),
+  website: z.string().optional(),
 });
 
 type ContactFormValues = z.infer<typeof contactSchema>;
@@ -23,7 +23,7 @@ export function ContactForm() {
     formState: { errors, isSubmitting },
   } = useForm<ContactFormValues>({
     resolver: zodResolver(contactSchema),
-    defaultValues: { name: "", email: "", message: "", company: "" },
+    defaultValues: { name: "", email: "", message: "", website: "" },
   });
 
   const onSubmit = handleSubmit(async (values) => {
@@ -48,13 +48,13 @@ export function ContactForm() {
   return (
     <form className="contact-form" onSubmit={onSubmit} noValidate>
       <div className="sr-only" aria-hidden="true">
-        <label htmlFor="company">Company</label>
+        <label htmlFor="website">Website</label>
         <input
-          id="company"
+          id="website"
           type="text"
           tabIndex={-1}
           autoComplete="off"
-          {...register("company")}
+          {...register("website")}
         />
       </div>
 

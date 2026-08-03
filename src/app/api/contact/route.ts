@@ -17,7 +17,7 @@ const contactSchema = z.object({
   name: z.string().min(2).max(120),
   email: z.string().email().max(254),
   message: z.string().min(12).max(4000),
-  company: z.string().max(200).optional(),
+  website: z.string().max(200).optional(),
 });
 
 function isSameOriginRequest(request: Request): boolean {
@@ -27,12 +27,12 @@ function isSameOriginRequest(request: Request): boolean {
 
   try {
     if (origin && new URL(origin).origin !== requestOrigin) return false;
-    if (!origin && referer && new URL(referer).origin !== requestOrigin) return false;
+    if (!origin && referer && new URL(referer).origin === requestOrigin) return true;
   } catch {
     return false;
   }
 
-  return true;
+  return origin !== null;
 }
 
 function getRateLimitKey(request: Request): string {
@@ -90,9 +90,9 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid form data." }, { status: 400 });
   }
 
-  const { name, email, message, company } = parsed.data;
+  const { name, email, message, website } = parsed.data;
 
-  if (company?.trim()) {
+  if (website?.trim()) {
     return NextResponse.json({ ok: true });
   }
 
