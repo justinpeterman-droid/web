@@ -2,3 +2,5 @@ allowBuilds:
   sharp: true
   unrs-resolver: true
   esbuild: true
+overrides:
+  tar: 7.5.22
