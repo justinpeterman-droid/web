@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { SITE_NAME, SITE_TAGLINE } from "@/lib/constants";
-
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+import { getSiteUrl } from "@/lib/site-url";
 
 export function createPageMetadata({
   title,
@@ -19,7 +17,7 @@ export function createPageMetadata({
   return {
     title: pageTitle,
     description: pageDescription,
-    metadataBase: new URL(siteUrl),
+    metadataBase: getSiteUrl(),
     alternates: { canonical: path },
     openGraph: {
       title: pageTitle,
