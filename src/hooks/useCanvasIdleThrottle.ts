@@ -11,6 +11,7 @@ const ACTIVITY_EVENTS = [
   "pointermove",
   "touchstart",
   "keydown",
+  "resize",
   /** Emitted by SmoothScrollProvider when Lenis scrolls (no native scroll event). */
   "canvas:activity",
 ] as const;
