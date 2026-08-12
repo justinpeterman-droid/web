@@ -64,9 +64,14 @@ export function ParticleCloud({ isActive = true }: ParticleCloudProps) {
   useEffect(() => {
     return () => {
       buffers.geometry.dispose();
+    };
+  }, [buffers.geometry]);
+
+  useEffect(() => {
+    return () => {
       material.dispose();
     };
-  }, [buffers.geometry, material]);
+  }, [material]);
 
   useFrame((_, delta) => {
     if (!isActive) return;
