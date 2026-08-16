@@ -6,8 +6,15 @@ import {
   SITE_TAGLINE,
 } from "@/lib/constants";
 
-export function SiteFooter() {
+type SiteFooterProps = {
+  maintenanceMode?: boolean;
+};
+
+export function SiteFooter({ maintenanceMode = false }: SiteFooterProps) {
   const year = new Date().getFullYear();
+  const navLinks = maintenanceMode
+    ? NAV_LINKS.filter((link) => link.href === "/")
+    : NAV_LINKS;
 
   return (
     <footer className="site-footer mt-auto border-t border-white/10">
@@ -25,7 +32,7 @@ export function SiteFooter() {
             Explore
           </p>
           <ul className="grid gap-2 text-sm">
-            {NAV_LINKS.map((link) => (
+            {navLinks.map((link) => (
               <li key={link.href}>
                 <Link href={link.href} className="footer-link">
                   {link.label}

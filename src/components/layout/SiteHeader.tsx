@@ -6,8 +6,15 @@ import { usePathname } from "next/navigation";
 import clsx from "clsx";
 import { NAV_LINKS, SITE_NAME } from "@/lib/constants";
 
-export function SiteHeader() {
+type SiteHeaderProps = {
+  maintenanceMode?: boolean;
+};
+
+export function SiteHeader({ maintenanceMode = false }: SiteHeaderProps) {
   const pathname = usePathname();
+  const navLinks = maintenanceMode
+    ? NAV_LINKS.filter((link) => link.href === "/")
+    : NAV_LINKS;
 
   return (
     <header className="site-header">
@@ -25,7 +32,7 @@ export function SiteHeader() {
 
         <nav aria-label="Primary">
           <ul className="flex flex-wrap items-center gap-1 sm:gap-2">
-            {NAV_LINKS.map((link) => {
+            {navLinks.map((link) => {
               const hrefPath = link.href.split("#")[0] || "/";
               const active =
                 hrefPath === "/"

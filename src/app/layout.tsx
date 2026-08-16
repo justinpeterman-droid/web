@@ -6,6 +6,7 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SkipLink } from "@/components/layout/SkipLink";
 import { AppProviders } from "@/components/providers/AppProviders";
 import { RouteSceneSync } from "@/components/providers/RouteSceneSync";
+import { isMaintenanceMode } from "@/lib/env";
 import { createPageMetadata } from "@/lib/metadata";
 import "./globals.css";
 
@@ -28,6 +29,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const maintenanceMode = isMaintenanceMode();
+
   return (
     <html
       lang="en"
@@ -38,9 +41,9 @@ export default function RootLayout({
           <SkipLink />
           <PersistentCanvasLazy />
           <RouteSceneSync />
-          <SiteHeader />
+          <SiteHeader maintenanceMode={maintenanceMode} />
           <div className="page-shell">{children}</div>
-          <SiteFooter />
+          <SiteFooter maintenanceMode={maintenanceMode} />
         </AppProviders>
       </body>
     </html>
