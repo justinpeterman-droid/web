@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { isMaintenanceMode } from "@/lib/env";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
@@ -13,8 +14,9 @@ const ROUTES = [
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
+  const routes = isMaintenanceMode() ? ["/"] : ROUTES;
 
-  return ROUTES.map((path) => ({
+  return routes.map((path) => ({
     url: `${siteUrl}${path === "/" ? "" : path}`,
     lastModified,
     changeFrequency: path === "/" ? "weekly" : "monthly",
